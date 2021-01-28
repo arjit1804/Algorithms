@@ -20,14 +20,12 @@ public class Main
 
     public final static int d = 256;                                //Rabin Karp
     static  String txt2 = "ABCDECDCDEECD" , pat2 = "DE";
-    static int q = 101;
 
     static int[][] graph = { {0, 2, 0, 6, 0}, {2, 0, 3, 8, 5}, {0, 3, 0, 0, 7}, {6, 8,0, 0,9}, {0,5,7,9,0}};    // MST
 
     private static final int V = 5; // MST
 
     static int[] A = { 9 ,1 , 4 ,0 ,6 ,3 ,5 ,2 ,7 ,8 }; //HeapSort
-    private static final int V1 = 5;
 
     static int[] searchArray = {10,20,30,40,50,60,70,80,90};
 
@@ -368,19 +366,19 @@ public class Main
 
      *******************************************************************************/
 
-    static void search(String pat, String txt, int q)
+    static void search(String pat, String txt)
     {
         int M = pat.length();
         int N = txt.length();
         int i, j, p = 0, t = 0, h = 1;
 
         for (i = 0; i < M-1; i++) //pow(d, M-1)%q
-            h = (h*d)%q;
+            h = (h*d)% 101;
 
         for (i = 0; i < M; i++)
         {
-            p = (d*p + pat.charAt(i))%q;
-            t = (d*t + txt.charAt(i))%q;
+            p = (d*p + pat.charAt(i))% 101;
+            t = (d*t + txt.charAt(i))% 101;
         }
 
         for (i = 0; i <= N - M; i++)
@@ -397,9 +395,9 @@ public class Main
             }
             if ( i < N-M )
             {
-                t = (d*(t - txt.charAt(i)*h) + txt.charAt(i+M))%q;
+                t = (d*(t - txt.charAt(i)*h) + txt.charAt(i+M))% 101;
                 if (t < 0)
-                    t = (t + q);
+                    t = (t + 101);
             }
         }
     }
@@ -411,7 +409,7 @@ public class Main
      *******************************************************************************/
 
 
-    public static void sort(int A[]) {
+    public static void sort(int[] A) {
         int n = A.length;
 
         // max heap
@@ -430,7 +428,7 @@ public class Main
         }
     }
 
-    static void heapify(int A[], int n, int i) {
+    static void heapify(int[] A, int n, int i) {
         // Find largest among root, left child and right child
         int largest = i;
         int l = 2 * i + 1;
@@ -541,6 +539,9 @@ public class Main
         System.out.println("10. Rabin Karp ");
         System.out.println("11. MST ");
         System.out.println("12. Heap Sort ");
+        System.out.println("13. Insertion in BST ");
+        System.out.println("14. Merge Function ");
+        System.out.println("15. Partition Function ");
         System.out.println("0. End the Program Execution");
 
         System.out.print("Enter a Number to Execute its Corresponding Algorithm -> ");
@@ -665,7 +666,7 @@ public class Main
                     exstart();
                     System.out.println("\n\tRabin karp is executed. \n");
                     System.out.println("\n\ttxt = 'ABCDECDCDEECD'\n\tpat = 'DE'");
-                    kmpSearch(pat2 , txt2);
+                    search(pat2 , txt2);
                     System.out.print("\n\n");
                     exend();
                     display();
@@ -695,14 +696,42 @@ public class Main
                     display();
                 }
 
-                default -> System.out.println("Wrong Choice Entered!");
+                case 13 -> {
+                    System.out.println("https://onlinegdb.com/BznH8YfBJ");
+                    System.exit(0);
+                }
+                case 14 -> {
+                    exstart();
+                    System.out.println("\n\tMerge Function is executed. \n");
+                    System.out.println("Original Array ->" + Arrays.toString(mergesortarray));
+                    merge(mergesortarray,0,mergesortarray.length/2,mergesortarray.length);
+                    System.out.print("Array after Merge Function ->  ");
+                    System.out.print(Arrays.toString(mergesortarray));
+                    System.out.print("\n\n");
+                    exend();
+                    display();
+                }
+                case 15 -> {
+                    exstart();
+                    System.out.println("\n\tPartition Function is executed. \n");
+                    System.out.println("Original Array ->" + Arrays.toString(quicksortarrray));
+                    System.out.print("Partition Element ->  ");
+                    System.out.print(partition(quicksortarrray,0,quicksortarrray.length));
+                    System.out.print("\n\n");
+                    exend();
+                    display();
+                }
+                default -> {
+                    System.out.println("Wrong Choice Entered!");
+                    System.exit(0);
+                }
             }
 
         } }
         else if(jpc == 2)
-            System.out.println("https://onlinegdb.com/bVC6BmNgJ");
+            System.out.println("https://onlinegdb.com/S1MHMvAy_");
         else if(jpc == 3)
-            System.out.println("https://onlinegdb.com/H1vyQZXAv");
+            System.out.println("https://onlinegdb.com/uVrmQXbyz");
         else
             System.out.println("Wrong Choice Entered!");
     }
